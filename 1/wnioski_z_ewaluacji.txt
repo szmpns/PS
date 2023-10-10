@@ -1,0 +1,2 @@
+Python oferuje typowanie silne, ponieważ nie pozwala na niejawną konwersję między różnymi typami danych, takimi jak liczby całkowite i łańcuchy znaków.
+Python oferuje typowanie dynamiczne, ponieważ typ zmiennej jest określany w trakcie działania programu i może być zmieniany w trakcie jego wykonywania.
