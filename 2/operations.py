@@ -26,7 +26,7 @@ def last_three_characters(text):
 
 def all_characters_in_even_positions(text):
     if len(text) >= 2:
-        return s[1::2]
+        return text[1::2]
     return None
 
 
