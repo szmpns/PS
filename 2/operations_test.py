@@ -48,6 +48,11 @@ if importlib.util.find_spec("pytest") is not None:
         assert operations.all_characters_in_even_positions("abcdefg") == "aceg"
         assert operations.all_characters_in_even_positions("12345") == "135"
         assert operations.all_characters_in_even_positions("A") == "A"
+    
+    def test_merge_characters_and_duplicate():
+        assert operations.merge_characters_and_duplicate("") == ""
+        assert operations.merge_characters_and_duplicate("A") == "AA"
+        assert operations.merge_characters_and_duplicate("Python") == "Pn" * len("Python")
 
 else:
     # Użyj testów Unittest

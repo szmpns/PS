@@ -17,3 +17,6 @@ def all_characters_in_even_positions(s):
     # if len(s) >= 2:
     #     return s[0::2]
     return s[0::2]
+
+def merge_characters_and_duplicate(string):
+    pass
