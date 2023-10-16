@@ -107,6 +107,17 @@ else:
                 operations.all_characters_in_even_positions("12345"), "135"
             )
             self.assertEqual(operations.all_characters_in_even_positions("A"), "A")
+        
+        def test_merge_characters_and_duplicate(self):
+            self.assertEqual(
+                operations.merge_characters_and_duplicate(""), ""
+            )
+            self.assertEqual(
+                operations.merge_characters_and_duplicate("A"), "AA"
+            )
+            self.assertEqual(
+                operations.merge_characters_and_duplicate("Python"), "Pn" * len("Python")
+            )
 
     if __name__ == "__main__":
         unittest.main()
