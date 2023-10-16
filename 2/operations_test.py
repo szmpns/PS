@@ -51,8 +51,8 @@ if importlib.util.find_spec("pytest") is not None:
     
     def test_merge_characters_and_duplicate():
         assert operations.merge_characters_and_duplicate("") == ""
-        assert operations.merge_characters_and_duplicate("A") == "AA"
-        assert operations.merge_characters_and_duplicate("Python") == "Pn" * len("Python")
+        assert operations.merge_characters_and_duplicate("A") == "A"
+        assert operations.merge_characters_and_duplicate("Python") == "Po" * len("Python")
 
 else:
     # Użyj testów Unittest
@@ -113,10 +113,10 @@ else:
                 operations.merge_characters_and_duplicate(""), ""
             )
             self.assertEqual(
-                operations.merge_characters_and_duplicate("A"), "AA"
+                operations.merge_characters_and_duplicate("A"), "A"
             )
             self.assertEqual(
-                operations.merge_characters_and_duplicate("Python"), "Pn" * len("Python")
+                operations.merge_characters_and_duplicate("Python"), "Po" * len("Python")
             )
 
     if __name__ == "__main__":

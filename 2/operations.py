@@ -19,4 +19,5 @@ def all_characters_in_even_positions(s):
     return s[0::2]
 
 def merge_characters_and_duplicate(string):
-    pass
+    new_text = first_character(string) + penultimate_character(string)
+    return new_text * len(string)
