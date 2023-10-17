@@ -10,16 +10,13 @@ def main():
 
     subparsers = parser.add_subparsers(dest="command")
 
-    # Subparser for text manipulation commands
     parser_text = subparsers.add_parser("text", help="Text manipulation commands")
     parser_text.add_argument("text", help="Text to manipulate")
 
-    # Subparser for cut command
     parser_cut = subparsers.add_parser("cut", help="Cut command")
     parser_cut.add_argument("-d", required=True, help="Delimiter for cutting")
     parser_cut.add_argument("-f", required=True, help="Field to cut")
 
-    # Subparser for grep command
     parser_grep = subparsers.add_parser("grep", help="Grep command")
     parser_grep.add_argument("-w", action="store_true", help="Match whole words only")
     parser_grep.add_argument("-i", action="store_true", help="Case-insensitive matching")
