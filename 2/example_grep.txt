@@ -1,0 +1,3 @@
+/usr/sbin/nologin
+/bin/sync
+/BIN/
