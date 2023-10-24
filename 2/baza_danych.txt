@@ -1,0 +1,6 @@
+warehouse = {
+    "Komputer" : 10,
+    "Laptop" : 20
+}
+Jan_Kowalski:Komputer(1):Laptop(5)
+Anna_Nowak:Komputer(2):Laptop(0)
