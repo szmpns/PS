@@ -2,10 +2,10 @@
 from enum import Enum
 
 class MoveDirection(Enum):
-    FORWARD = "Forward"
-    BACKWARD = "Backward"
-    LEFT = "Left"
-    RIGHT = "Right"
+    FORWARD = "FORWARD"
+    BACKWARD = "BACKWARD"
+    LEFT = "LEFT"
+    RIGHT = "RIGHT"
 
 
 class Vector2d:
