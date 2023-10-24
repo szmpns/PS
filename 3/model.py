@@ -1,4 +1,13 @@
 
+from enum import Enum
+
+class MoveDirection(Enum):
+    FORWARD = "Forward"
+    BACKWARD = "Backward"
+    LEFT = "Left"
+    RIGHT = "Right"
+
+
 class Vector2d:
     def __init__(self, x, y):
         self.__x = x
