@@ -15,3 +15,6 @@ class TestOptionsPraser(unittest.TestCase):
         result = OptionsParser.parse(arguments)
         expected_result = [MoveDirection.LEFT , MoveDirection.LEFT , MoveDirection.FORWARD , MoveDirection.BACKWARD , MoveDirection.RIGHT]
         self.assertEqual(result , expected_result)
+
+if __name__ == "__main__":
+    unittest.main()
