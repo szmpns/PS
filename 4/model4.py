@@ -115,3 +115,24 @@ class Animal:
     
     def isAt(self, position: Vector2d) -> bool:
         return self.position == position
+    
+    def isMap(self, position: Vector2d) -> bool:
+        return 0 <= position.get_x() and position.get_x() <=4 and 0 <= position.get_y() and position.get_y() <=4 
+
+    def move(self, direction: MoveDirection) -> None:
+        if direction == MoveDirection.RIGHT:
+            new_position = self.orientation.next()
+            if self.isMap(new_position):
+                self.position = new_position
+        elif direction == MoveDirection.LEFT:
+            new_position = self.orientation.previous()
+            if self.isMap(new_position):
+                self.position = new_position
+        elif direction == MoveDirection.FORWARD:
+            new_position = self.position.subtract(self.orientation.toUnitVector())
+            if self.isMap(new_position):
+                self.position = new_position
+        elif direction == MoveDirection.BACKWARD:
+            new_position = self.position.add(self.orientation.toUnitVector())
+            if self.isMap(new_position):
+                self.position = new_position
