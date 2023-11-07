@@ -108,7 +108,7 @@ class Animal:
         self.orientation = orientation
 
     def __str__(self) -> str:
-        return f"Position: {self.position}, Orientation: {self.orientation}"
+        return f"({self.position.get_x()},{self.position.get_y()}) {self.orientation}"
     
     def __repr__(self) -> str:
         return str(self)
@@ -121,18 +121,14 @@ class Animal:
 
     def move(self, direction: MoveDirection) -> None:
         if direction == MoveDirection.RIGHT:
-            new_position = self.orientation.next()
-            if self.isMap(new_position):
-                self.position = new_position
+            self.orientation = self.orientation.next()
         elif direction == MoveDirection.LEFT:
-            new_position = self.orientation.previous()
-            if self.isMap(new_position):
-                self.position = new_position
+            self.orientation = self.orientation.previous()
         elif direction == MoveDirection.FORWARD:
-            new_position = self.position.subtract(self.orientation.toUnitVector())
+            new_position = self.position.add(self.orientation.toUnitVector())
             if self.isMap(new_position):
                 self.position = new_position
         elif direction == MoveDirection.BACKWARD:
-            new_position = self.position.add(self.orientation.toUnitVector())
+            new_position = self.position.subtract(self.orientation.toUnitVector())
             if self.isMap(new_position):
                 self.position = new_position
