@@ -34,6 +34,26 @@ class MapDirection(Enum):
         elif self == MapDirection.NORTH:
             return MapDirection.EAST
         
+    def previous(self) -> "MapDirection":
+        if self == MapDirection.EAST:
+            return MapDirection.NORTH
+        elif self == MapDirection.NORTH:
+            return MapDirection.WEST
+        elif self == MapDirection.WEST:
+            return MapDirection.SOUTH
+        elif self == MapDirection.SOUTH:
+            return MapDirection.EAST
+    
+    def toUnitVector(self) -> "Vector2d":
+        if self == MapDirection.NORTH:
+            return Vector2d(0, 1)
+        elif self == MapDirection.EAST:
+            return Vector2d(1, 0)
+        elif self == MapDirection.SOUTH:
+            return Vector2d(0, -1)
+        elif self == MapDirection.WEST:
+            return Vector2d(-1, 0)
+        
 
 
 class Vector2d:
