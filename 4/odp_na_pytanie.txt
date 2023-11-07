@@ -1,0 +1,1 @@
+Obiekty klasy Vector2d nie będą dostępne jako klucze w słowniku, jeśli klasa ta nie implementuje odpowiednich metod __hash__ i __eq__. Aby rozwiązać ten problem, musimy zaimplementować te metody w klasie Vector2d.

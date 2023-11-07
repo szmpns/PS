@@ -100,7 +100,12 @@ class Vector2d:
         return Vector2d(x_n , y_n)
     
     def __eq__(self, other_Vector2d):
-        return self.__x == other_Vector2d.get_x() and self.__y == other_Vector2d.get_y()
+        if isinstance(other_Vector2d, Vector2d):
+            return self.__x == other_Vector2d.get_x() and self.__y == other_Vector2d.get_y()
+        return False
+
+    def __hash__(self):
+        return hash((self.__x, self.__y))
 
 class Animal:
     def __init__(self, position: Vector2d, orientation: MapDirection = MapDirection.NORTH):
