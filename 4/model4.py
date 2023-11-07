@@ -54,8 +54,6 @@ class MapDirection(Enum):
         elif self == MapDirection.WEST:
             return Vector2d(-1, 0)
         
-
-
 class Vector2d:
     def __init__(self, x, y):
         self.__x = x
@@ -103,3 +101,17 @@ class Vector2d:
     
     def __eq__(self, other_Vector2d):
         return self.__x == other_Vector2d.get_x() and self.__y == other_Vector2d.get_y()
+
+class Animal:
+    def __init__(self, position: Vector2d, orientation: MapDirection = MapDirection.NORTH):
+        self.position = position
+        self.orientation = orientation
+
+    def __str__(self) -> str:
+        return f"Position: {self.position}, Orientation: {self.orientation}"
+    
+    def __repr__(self) -> str:
+        return str(self)
+    
+    def isAt(self, position: Vector2d) -> bool:
+        return self.position == position
