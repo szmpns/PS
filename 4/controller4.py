@@ -31,4 +31,4 @@ class Simulation:
             animal = self.animals[self.current_animal]
             animal.move(direction)
             print(f"Zwierzę {self.current_animal} : {animal.position} {animal.orientation}")
-            self.current_animal = (self.current_animal + 1) % n_animals  # Popraw ta linijkę
+            self.current_animal = (self.current_animal + 1) % n_animals  
