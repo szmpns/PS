@@ -1,34 +1,38 @@
-
+from typing import Any, List
 from model.core import MoveDirection, Vector2d
 from model.animal import Animal
+from model.interface import IWorldMap
+
+import time
 
 class OptionsParser:
-    
-    def parse(args):
-        dictionary = {
-            "f": MoveDirection.FORWARD,
-            "b": MoveDirection.BACKWARD,
-            "l": MoveDirection.LEFT,
-            "r": MoveDirection.RIGHT
-        }
-        bucket = []
-
-        for move in args:
-            if move in dictionary:
-                bucket.append(dictionary[move])
-
-        return bucket
-    
+	@staticmethod
+	def parse(move_directions: List[Any]) -> List[MoveDirection]:
+		valid_moves: List[MoveDirection] = []
+		for move in move_directions:
+			try:
+				valid_moves.append(MoveDirection(move))
+			except ValueError:
+				pass
+		
+		return valid_moves
+	
 class Simulation:
-    def __init__(self, directions: list[MoveDirection], positions: list[Vector2d]) -> None:
+    def __init__(self, world_map: IWorldMap, directions: list[MoveDirection], positions: list[Vector2d]) -> None:
+        self.world_map = world_map
         self.directions = directions
-        self.animals = [Animal(position) for position in positions]
-        self.current_animal = 0
+        self.animals = []
+
+        for position in positions:
+            animal = Animal(position)
+            if world_map.place(animal):
+                self.animals.append(animal)
 
     def run(self) -> None:
-        n_animals = len(self.animals)
         for direction in self.directions:
-            animal = self.animals[self.current_animal]
-            animal.move(direction)
-            print(f"Zwierzę {self.current_animal} : {animal.position} {animal.orientation}")
-            self.current_animal = (self.current_animal + 1) % n_animals  
+            for animal in self.animals:
+                self.world_map.move(animal, direction)
+                time.sleep(1)
+                print(self.world_map)
+            else:
+                print(self.world_map)
