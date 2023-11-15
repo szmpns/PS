@@ -2,7 +2,7 @@
 from datetime import date
 
 class Client:
-    client_id = 0
+    client_id = 1
 
     def __init__(self , last_name, first_name):
         self.id = Client.client_id
