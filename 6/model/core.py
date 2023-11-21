@@ -54,6 +54,7 @@ class Vector2d:
 
     def __hash__(self):
         return hash((self.__x, self.__y))
+    
 
 class MoveDirection(Enum):
     FORWARD = 'f'
@@ -93,3 +94,5 @@ class MapDirection(Enum):
             return Vector2d(1, 0)
         else:
             return Vector2d(0, 0)
+            
+    
