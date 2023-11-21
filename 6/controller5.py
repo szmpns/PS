@@ -6,17 +6,28 @@ from model.occupiedError import PositionAlreadyOccupiedError
 
 import time
 
-class OptionsParser:
-	@staticmethod
-	def parse(move_directions: List[Any]) -> List[MoveDirection]:
-		valid_moves: List[MoveDirection] = []
-		for move in move_directions:
-			try:
-				valid_moves.append(MoveDirection(move))
-			except ValueError:
-				print(f'{move} is not legal move specification')
+# class OptionsParser:
+# 	@staticmethod
+# 	def parse(move_directions: List[Any]) -> List[MoveDirection]:
+# 		valid_moves: List[MoveDirection] = []
+# 		for move in move_directions:
+# 			try:
+# 				valid_moves.append(MoveDirection(move))
+# 			except ValueError:
+# 				print(f'{move} is not legal move specification')
 		
-		return valid_moves
+# 		return valid_moves
+class OptionsParser:
+    @staticmethod
+    def parse(move_directions: List[Any]) -> List[MoveDirection]:
+        def try_parse(move):#zmienilem petle na funkcje
+            try:
+                return MoveDirection(move)
+            except ValueError:
+                print(f'{move} is not a legal move specification')
+        
+        valid_moves = list(filter(None, map(try_parse, move_directions)))
+        return valid_moves
 	
 class Simulation:
     def __init__(self, world_map: IWorldMap, directions: list[MoveDirection], positions: list[Vector2d]) -> None:
