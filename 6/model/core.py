@@ -95,4 +95,3 @@ class MapDirection(Enum):
         else:
             return Vector2d(0, 0)
             
-    

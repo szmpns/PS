@@ -3,6 +3,8 @@ from typing import Any
 from model.core import Vector2d, MapDirection, MoveDirection
 # from model.interface import IMoveValidator
 
+from model.occupiedError import PositionAlreadyOccupiedError
+
 
 class Animal:
     def __init__(self, position: Vector2d = Vector2d(0,0), orientation: MapDirection = MapDirection.NORTH):
@@ -35,5 +37,8 @@ class Animal:
         elif direction == MoveDirection.BACKWARD:
             new_position = self.position.subtract(self.orientation.toUnitVector())
 
-        if validator.canMoveTo(new_position):
-            self.position = new_position
+        try:
+            if validator.canMoveTo(new_position):
+                self.position = new_position
+        except PositionAlreadyOccupiedError as e:
+            print(f"Encountered PositionAlreadyOccupiedError: {e}")

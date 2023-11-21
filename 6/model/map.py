@@ -6,6 +6,8 @@ from model.view import MapVisualizer
 from model.interface import IMoveValidator, IWorldMap
 from abc import ABC
 
+from model.occupiedError import PositionAlreadyOccupiedError
+
 
 class WorldMap(IMoveValidator, IWorldMap, ABC):
     def __init__(self, width: int = -1, height: int = -1):
@@ -17,7 +19,8 @@ class WorldMap(IMoveValidator, IWorldMap, ABC):
         if self.canMoveTo(animal.position):
             self.animals[animal.position] = animal
             return True
-        return False
+        else:
+            raise PositionAlreadyOccupiedError(animal.position)
 
     def move(self, animal: Animal, direction: MoveDirection) -> None:
         (new_position, orientation) = self._calculate_new_position(animal.position, direction)
