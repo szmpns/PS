@@ -46,9 +46,17 @@ def test_for_infinite_map(
     assert infinite_map.objectAt(Vector2d(2, 3)) is animal2
     assert infinite_map.objectAt(Vector2d(3, 3)) is None
 
-
 def test_move_invalid_directions(infinite_map, animal1):
     assert animal1.isAt(Vector2d(0, 0)) is True
-    # Moving in an invalid direction should not change animal's position
-    animal1.move("INVALID_DIRECTION", infinite_map)
-    assert animal1.isAt(Vector2d(0, 0)) is True
+    initial_position = animal1.position  
+    try:
+        animal1.move("INVALID_DIRECTION", infinite_map)
+    except ValueError:
+        pass 
+    assert animal1.position == initial_position
+
+# def test_move_invalid_directions(infinite_map, animal1):
+#     assert animal1.isAt(Vector2d(0, 0)) is True
+#     # Moving in an invalid direction should not change animal's position
+#     animal1.move("INVALID_DIRECTION", infinite_map)
+#     assert animal1.isAt(Vector2d(0, 0)) is True

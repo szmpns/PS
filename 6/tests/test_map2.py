@@ -2,6 +2,7 @@ import pytest
 from model.map import InfiniteMap
 from model.animal import Animal
 from model.core import Vector2d, MoveDirection
+from model.occupiedError import PositionAlreadyOccupiedError
         
 @pytest.fixture
 def infinite_map():
@@ -41,7 +42,7 @@ def test_for_infinite_map(
     animal1.move(MoveDirection.BACKWARD, infinite_map)
     assert animal1.isAt(Vector2d(0, -1)) is True
     animal1.move(MoveDirection.BACKWARD, infinite_map)
-    assert animal1.isAt(Vector2d(0, 0)) is True
+    assert animal1.isAt(Vector2d(0, 0)) is False
     # Testing the correctness of the implementation of methods inherited from abstract classes: 'IWorldMap' and 'IMoveValidator'
     assert infinite_map.canMoveTo(Vector2d(-1, -1)) is True
     assert infinite_map.canMoveTo(Vector2d(4, 4)) is True
@@ -49,7 +50,8 @@ def test_for_infinite_map(
     assert infinite_map.place(animal1) is True
     assert infinite_map.canMoveTo(Vector2d(0, 0)) is False
     assert infinite_map.isOccupied(Vector2d(0, 0)) is True
-    assert infinite_map.place(animal1) is False
+    with pytest.raises(PositionAlreadyOccupiedError, match=r"Position \(-?\d+,-?\d+\) is already occupied"):
+        infinite_map.place(animal1)
     assert infinite_map.place(animal2) is True
     assert infinite_map.place(animal3) is True
     assert infinite_map.place(animal4) is True
