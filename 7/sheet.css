@@ -1,4 +1,30 @@
 
+:root {
+  --text-color-initial: green;
+  --text-color-final: blue;
+}
+
+@keyframes changeTextColor {
+  0%{
+    color: var(--text-color-initial);
+  }
+  50%{
+    color: var(--text-color-final);
+  }
+  100%{
+    color: var(--text-color-initial);
+  }
+}
+
+aside h1,
+header h1,
+main h1 {
+  animation-name: changeTextColor;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
 .azure {
   background-color: azure;
 }
