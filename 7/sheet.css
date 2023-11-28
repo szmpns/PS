@@ -1,4 +1,42 @@
 
+header,
+nav,
+main,
+aside,
+footer {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  header,
+  footer {
+    width: 100%;
+  }
+
+  nav {
+    width: 30%;
+  }
+
+  aside {
+    width: 60%;
+  }
+
+  main {
+    width: 70%;
+  }
+}
+
+/* Dodanie elastycznych jednostek dla czcionek */
+body {
+  font-size: 16px; /* Bazowy rozmiar czcionki */
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 20px; /* Elastyczny rozmiar czcionki dla większych ekranów */
+  }
+}
+
 :root {
   --text-color-initial: green;
   --text-color-final: blue;
