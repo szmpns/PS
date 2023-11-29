@@ -1,42 +1,4 @@
 
-header,
-nav,
-main,
-aside,
-footer {
-  width: 100%;
-}
-
-@media screen and (min-width: 768px) {
-  header,
-  footer {
-    width: 100%;
-  }
-
-  nav {
-    width: 30%;
-  }
-
-  aside {
-    width: 60%;
-  }
-
-  main {
-    width: 70%;
-  }
-}
-
-/* Dodanie elastycznych jednostek dla czcionek */
-body {
-  font-size: 16px; /* Bazowy rozmiar czcionki */
-}
-
-@media screen and (min-width: 768px) {
-  body {
-    font-size: 20px; /* Elastyczny rozmiar czcionki dla większych ekranów */
-  }
-}
-
 :root {
   --text-color-initial: green;
   --text-color-final: blue;
@@ -63,6 +25,36 @@ main h1 {
   animation-timing-function: ease-in-out;
 }
 
+header,
+nav,
+main,
+aside,
+footer {
+  width: 100%;
+}
+
+header,
+footer {
+  width: 100%;
+}
+
+nav {
+  width: 30%;
+}
+
+aside {
+  width: 60%;
+  font-size: 20px;
+}
+
+main {
+  width: 70%;
+}
+
+body {
+  font-size: 20px; 
+}
+
 .azure {
   background-color: azure;
 }
@@ -73,8 +65,8 @@ main h1 {
 
 aside  {
   position: absolute;
-  right: 20px;
-  font-size: large;
+  right: 8px;
+  font-size: 20px;
   width: 450px;
   top: 120px;
   padding-left: 5px;
@@ -82,23 +74,27 @@ aside  {
 
 footer {
   padding: 5px;
+  box-sizing: border-box;
 }
 
 header {
-  font-size: large;
+  font-size: 20px;
   margin-bottom: 20px;
   padding-left: 15px;
+  box-sizing: border-box;
 }
 
 main { 
   margin-bottom: 20px;
   width: 40%;
   padding-left: 5px;
+  min-width: 160px;
 }
 
 nav {
   margin-bottom: 20px;
   width: 15%;
+  min-width: 160px;
 }
 
 nav ul {
@@ -106,4 +102,20 @@ nav ul {
 }
 nav li {
 
+}
+
+@media only screen and (max-width: 825px) {
+  aside {
+    position: static; 
+    margin-bottom: 20px; 
+    width: auto; 
+    font-size: 16px;
+  }
+
+  nav,
+  header,
+  footer,
+  main {
+    font-size: 16px;
+  }
 }
