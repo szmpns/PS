@@ -1,0 +1,67 @@
+<!-- <html>
+  <body onLoad="
+            console.log('Tekst 1');
+            window.alert('Tekst 2');
+            "></body>
+    <div>Treść dokumentu HTML</div>
+    <div>Treść dokumentu HTML</div>
+    <div>Treść dokumentu HTML</div>
+    <script>
+        function funkcja_zwrotna() {
+            var poleTxt1 = document.forms["Forms"]["pole1"].value;
+            var poleTxt2 = document.forms["Forms"]["pole2"].value;
+
+            console.log(`${poleTxt1}:${typeof poleTxt1}`);
+            console.log(`${poleTxt2}:${typeof poleTxt2}`);
+        
+        }
+
+        function fourPrompts() {
+            for(let i = 0; i < 4 ; i++) {
+                const wartosc = window.prompt("Podaj wartość: ");
+                console.log(`${wartosc}:${typeof wartosc}`);
+            }
+        }
+        fourPrompts()
+        window.prompt("Podaj imie:","Szymon");
+    </script>
+     <form oninput="wynik.value = pole_tekstowe.value + pole_liczbowe.value">
+        <input id="pole_tekstowe" type="text" placeholder="Wprowadź tekst">
+        +
+        <input id="pole_liczbowe" type="number" placeholder="Wprowadź liczbę">    
+        =
+        <output name="wynik" for="pole_tekstowe pole_liczbowe">Tu pojawi się wynik obliczeń</output>    
+        <br>    
+        <input type="button" value="Wypisz">
+      </form>
+      <form name="Forms">
+        Pole 1: <input type="text" name="pole1"> <br>
+        Pole 2: <input type="text" name="pole2"> <br>
+      </form>
+  </body>
+</html> -->
+
+<html>
+  <head>
+    <script src="zadanie1.js">
+    </script>
+  </head>
+  <body onLoad="
+    console.log('Tekst 1');
+    window.alert('Tekst 2');
+  ">
+    <div>Treść dokumentu HTML</div>
+    <div>Treść dokumentu HTML</div>
+    <div>Treść dokumentu HTML</div>
+
+    <form oninput="wynik.value = pole_tekstowe.value + pole_liczbowe.value">
+      <input id="pole_tekstowe" type="text" placeholder="Wprowadź tekst">
+      +
+      <input id="pole_liczbowe" type="number" placeholder="Wprowadź liczbę">
+      =
+      <output name="wynik" for="pole_tekstowe pole_liczbowe">Tu pojawi się wynik obliczeń</output>
+      <br>
+      <input type="button" value="Wypisz" onclick="funkcja_zwrotna()">
+    </form>
+  </body>
+</html>

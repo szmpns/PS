@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <title>Page title</title>
+    <script>
+      "use strict"; // Nie wyłączaj trybu ścisłego    
+      var canvas = document.getElementById('canvas');
+      ctx = canvas.getContext('2d');        
+      ctx.fillText("Hello World", 10, 50); //Wykreślenie podanego tekstu na płótnie
+    </script>
+  </head>
+  <body>
+    <main>
+      <h1>Płótno</h1>
+      <canvas id="canvas" width="500" height="500" style="border:1px solid #000000;">
+      Wygląda na to, że twoja przeglądarka nie obsługuje elementu "canvas" 
+      </canvas>
+    </main>
+    <script>
+            "use strict";
+    
+    document.addEventListener("DOMContentLoaded", function() {
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+
+      // Rysowanie prostokąta
+      ctx.fillStyle = "#FF0000"; // Czerwony kolor wypełnienia
+      ctx.fillRect(100, 200, 300, 70); // Współrzędne x, y oraz szerokość i wysokość
+
+      // Rysowanie koła
+      ctx.beginPath();
+      ctx.arc(145, 270, 40, 0, Math.PI * 1); // Środek x, y, promień, kąt startowy, kąt końcowy
+      ctx.fillStyle = "black"; // Zielony kolor wypełnienia
+      ctx.fill();
+
+      // Rysowanie koła
+      ctx.beginPath();
+      ctx.arc(350, 270, 40, 0, Math.PI * 1); // Środek x, y, promień, kąt startowy, kąt końcowy
+      ctx.fillStyle = "black"; // Zielony kolor wypełnienia
+      ctx.fill();
+
+      // Rysowanie trójkąta
+      ctx.beginPath();
+      ctx.moveTo(100, 200); // Początkowy punkt
+      ctx.lineTo(400, 200); // Kolejne punkty
+      ctx.lineTo(200, 100);
+      ctx.closePath(); // Zamknięcie ścieżki
+      ctx.fillStyle = "red"; //wypelnienie
+      ctx.fill();
+      ctx.strokeStyle = "black"; //kolor linii
+      ctx.stroke(); // Narysowanie linii
+
+      // Rysowanie trójkąta
+      ctx.beginPath();
+      ctx.moveTo(200, 190); // Początkowy punkt
+      ctx.lineTo(375, 190); // Kolejne punkty
+      ctx.lineTo(240, 130);
+      ctx.closePath(); // Zamknięcie ścieżki
+      ctx.fillStyle = "white"; //wypelnienie
+      ctx.fill();
+      ctx.strokeStyle = "black"; //kolor linii
+      ctx.stroke(); // Narysowanie linii
+    });
+    </script>
+  </body>
+  </html>
