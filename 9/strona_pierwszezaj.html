@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Tytuł strony</title>
+  <style>
+    /* Dodaj tu style CSS */
+  </style>
+</head>
+<body>
+  <form>
+    <button id="SetButton" type="button">Set</button>
+    <button id="DeleteButton" type="button">Delete</button>
+    <button id="AddButton" type="button">Add</button>
+  </form>
+
+  <header>
+    <h1>Tytuł strony</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li>
+        <a href="">Element 1</a>
+      </li>
+      <li>
+        <a href="">Element 2</a>
+      </li>
+    </ul>
+  </nav>
+
+  <aside>
+    <h1>Panel boczny</h1>
+    <h2>Ciekawe odsyłacze</h2>
+    <ul>
+      <li>
+        <a href="">Odsyłacz 1</a>
+      </li>
+      <li>
+        <a href="">Odsyłacz 2</a>
+      </li>
+      <li>
+        <a href="">Odsyłacz 3</a>
+      </li>
+    </ul>
+  </aside>
+
+  <main>
+    <h1>Treść strony</h1>
+  </main>
+
+  <footer>
+    <a href="mailto:your.email.address">Imię Nazwisko</a>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const setButton = document.getElementById('SetButton');
+      const deleteButton = document.getElementById('DeleteButton');
+      const addButton = document.getElementById('AddButton');
+      const main = document.querySelector('main');
+      let paragraphIndex = 0;
+      const concert = [
+        "Natenczas Wojski chwycił na taśmie przypięty Swój róg bawoli, długi, cętkowany, kręty Jak wąż boa, oburącz do ust go przycisnął, Wzdął policzki jak banię, w oczach krwią zabłysnął,",
+        "Zasunął wpół powieki, wciągnął w głąb pół brzucha I do płuc wysłał z niego cały zapas ducha, I zagrał: róg jak wicher, wirowatym dechem Niesie w puszczę muzykę i podwaja echem.",
+        "Umilkli strzelcy, stali szczwacze zadziwieni Mocą, czystością, dziwną harmoniją pieni. Starzec cały kunszt, którym niegdyś w lasach słynął, Jeszcze raz przed uszami myśliwców rozwinął;",
+        "Napełnił wnet, ożywił knieje i dąbrowy, Jakby psiarnię w nie wpuścił i rozpoczął łowy. Bo w graniu była łowów historyja krótka: Zrazu odzew dźwięczący, rześki: to pobudka;",
+        "Potem jęki po jękach skomlą: to psów granie; A gdzieniegdzie ton twardszy jak grzmot: to strzelanie."
+      ];
+
+      // reset
+      function resetStyles() {
+        const elementsToReset = document.querySelectorAll('aside, header, main, footer, nav');
+
+        elementsToReset.forEach(element => {
+          element.style.cssText = ''; // reset
+        });
+      }
+
+      addButton.addEventListener('click', function () {
+        if (paragraphIndex < concert.length) {
+          const paragraph = document.createElement('p');
+          paragraph.textContent = concert[paragraphIndex];
+          main.appendChild(paragraph);
+          paragraphIndex++;
+
+          if (paragraphIndex === concert.length) {
+            addButton.disabled = true; // dezaktywuj przycisk po dodaniu wszystkich akapitów
+          }
+        }
+      });
+
+      setButton.addEventListener('click', function () {
+        const elementsToStyle = document.querySelectorAll('aside, header, main, footer, nav');
+
+        elementsToStyle.forEach(element => {
+          element.style.animationName = 'changeTextColor';
+          element.style.animationDuration = '4s';
+          element.style.animationIterationCount = 'infinite';
+          element.style.animationTimingFunction = 'ease-in-out';
+          element.style.backgroundColor = 'azure';
+          element.style.border = '1px solid black';
+        });
+
+        const header = document.querySelector('header');
+        const nav = document.querySelector('nav');
+        const main = document.querySelector('main');
+        const aside = document.querySelector('aside');
+        const footer = document.querySelector('footer');
+
+        header.style.width = '100%';
+        header.style.fontSize = '20px';
+        header.style.marginBottom = '20px';
+        header.style.paddingLeft = '15px';
+        header.style.boxSizing = 'border-box';
+
+        nav.style.width = '30%';
+        nav.style.marginBottom = '20px';
+
+        main.style.width = '40%';
+        main.style.marginBottom = '20px';
+        main.style.paddingLeft = '5px';
+        main.style.minWidth = '160px';
+
+        aside.style.width = '60%';
+        aside.style.fontSize = '20px';
+        aside.style.position = 'absolute';
+        aside.style.right = '8px';
+        aside.style.width = '450px';
+        aside.style.top = '120px';
+        aside.style.paddingLeft = '5px';
+        aside.style.marginTop = '20px';
+
+        footer.style.padding = '5px';
+        footer.style.boxSizing = 'border-box';
+
+        const allElements = document.querySelectorAll('nav, header, footer, main, aside');
+        allElements.forEach(element => {
+          element.style.fontSize = '20px';
+        });
+
+        if (window.innerWidth <= 825) {
+          aside.style.position = 'static';
+          aside.style.marginBottom = '20px';
+          aside.style.width = 'auto';
+          aside.style.fontSize = '16px';
+
+          allElements.forEach(element => {
+            element.style.fontSize = '16px';
+          });
+        }
+      });
+
+      deleteButton.addEventListener('click', function () {
+        resetStyles(); // reset
+        addButton.disabled = false; // aktywuj przycisk po resecie
+        paragraphIndex = 0; // zresetuj licznik akapitów
+        main.innerHTML = ''; // usuń dodane akapity
+      });
+    });
+  </script>
+</body>
+</html>
