@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sklep</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Twoje style */
+    .card {
+      transition: transform 1s; 
+    }
+    .card:hover {
+      transform: rotate(360deg); 
+    }
+  </style>
+</head>
+<body>
+  <header class="p-3 bg-warning">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+        </a>
+        <!-- Tutaj możesz dodać inne elementy nagłówka -->
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container mt-4">
+      <form id="commandForm">
+        <div class="mb-3">
+          <label for="commandInput" class="form-label">Wprowadź komendę:</label>
+          <input type="text" class="form-control" id="commandInput" name="command" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Wykonaj</button>
+      </form>
+    </div>
+  </main>
+
+  <div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <p class="col-md-4 mb-0 text-body-secondary">&copy; Szablony CyberAGH</p>
+      <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+      </a>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Dane towarów
+      const inventory = [
+        { nazwa: 'SkodaRS', ilosc: 4, cena: 120000 },
+        { nazwa: 'Ferrari', ilosc: 2, cena: 1400000 }
+      ];
+
+      // Dane klientów
+      const clients = [
+        { imie: 'Jan', nazwisko: 'Kowalski' },
+        { imie: 'Tymoteusz', nazwisko: 'Zgred' }
+      ];
+
+      const sold = [
+        {}
+      ]
+
+      const commandForm = document.getElementById('commandForm');
+
+      commandForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const formData = new FormData(commandForm);
+        const command = formData.get('command');
+
+        handleCommand(command);
+      });
+
+      function handleCommand(command) {
+        const operation = command.split(' ')[0];
+        
+        switch(operation) {
+          case 'Sprzedaż':
+            console.group('Sprzedaż towaru określonemu klientowi');
+            const parts = command.split(' ').slice(1); // Pobieramy elementy po operacji 'Sprzedaż'
+            const productName = parts[0]; // Nazwa towaru
+            const customerName = parts.slice(1).join(' '); // Imię i nazwisko klienta
+            // Tutaj wykonaj operację sprzedaży, zmieniając stan magazynu i/lub informacje o sprzedaży dla klienta
+            console.log(`Sprzedano ${productName} klientowi ${customerName}`);
+            console.groupEnd();
+      break;
+          case 'Wyświetlenie':
+          if(command.includes('klientów')) {
+                    console.group('Wyświetlenie listy klientów');
+                    console.log('Wyświetlono listę klientów:');
+                    if (clients.length > 0) {
+                    clients.forEach((client, index) => {
+                        console.group(`Klient ${index + 1}`);
+                        console.log(`Imię: ${client.imie} Nazwisko: ${client.nazwisko}`);
+                        console.groupEnd();
+                    });
+                    } else {
+                    console.warn('Lista klientów jest pusta.');
+                    }
+                    console.groupEnd();
+            } else if(command.includes('wykazu towarów')) {
+              console.group('Wyświetlenie wykazu towarów kupionych przed podanego klienta wraz z sumaryczną ceną');
+              // Tu wykonaj operację wyświetlenia wykazu towarów
+              console.log('Wyświetlono wykaz towarów:', inventory);
+              console.groupEnd();
+            } else if(command.includes('stanu magazynu')) {
+              console.group('Wyświetlenie stanu magazynu');
+              console.log('Wyświetlono stan magazynu:', inventory);
+              inventory.forEach(index, aa) => {
+                        console.group(`Magazyn ${aa + 1}`);
+                        console.log(`Nazwa: ${index.nazwa} Ilość: ${index.ilosc} Cena: ${index.cena}`);
+                        console.groupEnd();
+              console.groupEnd();
+            }
+            break;
+          default:
+            console.error('Błąd: Nieznana komenda');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
