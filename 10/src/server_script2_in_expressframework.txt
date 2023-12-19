@@ -1,0 +1,55 @@
+const http = require("http");
+const { URL } = require("url");
+const express = require("express");
+const bodyParser = require("body-parser");
+const fs = require("fs");
+
+const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+const guestBookFile = "guestbook.txt";
+
+app.get("/", (req, res) => {
+  fs.readFile(guestBookFile, "utf8", (err, data) => {
+    if (err) {
+      res.send("Błąd odczytu księgi gości");
+    } else {
+      const entries = data.split("\n").filter((entry) => entry.trim() !== "");
+      let guestBookContent = "<h1>Poprzednie wpisy</h1>";
+      entries.forEach((entry) => {
+        guestBookContent += `<p>${entry}</p>`;
+      });
+      guestBookContent += `
+                <h2>Nowy wpis:</h2>
+                <form action="/" method="post">
+                    <label>Twoje imię i nazwisko:</label><br>
+                    <input type="text" name="name"><br>
+                    <label>Treść wpisu:</label><br>
+                    <textarea name="message" rows="4" cols="50"></textarea><br>
+                    <input type="submit" value="Dodaj wpis">
+                </form>
+            `;
+      res.send(guestBookContent);
+    }
+  });
+});
+
+app.post("/", (req, res) => {
+  const name = req.body.name;
+  const message = req.body.message;
+  const newEntry = `${name}\n${message}\n`;
+
+  fs.appendFile(guestBookFile, newEntry, (err) => {
+    if (err) {
+      res.send("Błąd dodawania wpisu");
+    } else {
+      res.redirect("/");
+    }
+  });
+});
+
+const PORT = 8000;
+http.createServer(app).listen(PORT, () => {
+  console.log(`Serwer uruchomiony na porcie ${PORT}`);
+});
