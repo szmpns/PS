@@ -1,0 +1,52 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Second Express application
+    style.
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      td, th {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #04AA6D;
+        color: white;
+      }
+  body
+    main
+      h1 Second Express application
+      table
+        thead
+          tr
+            th GET
+            th POST
+        tbody
+          tr 
+            td 
+              form(method='GET', action='/submit')
+                label(for='name') Give your name
+                input(name='name')
+                br
+                input(type='submit')
+                input(type='reset')
+            td 
+              form(method='POST', action='/')
+                label(for='name') Give your name
+                input(name='name')
+                br
+                input(type='submit')
+                input(type='reset')
+          tr
+            th Imię
+            th Nazwisko
+          each student in students
+            tr
+              td= student.fname
+              td= student.lname
+      img(src='/static/images/dog.jpg', alt='Your Image')
