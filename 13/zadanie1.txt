@@ -1,0 +1,6 @@
+
+deno run --no-check app1.ts 
+
+denon run --allow-net app1.ts  
+
+deno run --allow-net app1.ts  

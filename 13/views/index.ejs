@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Guestbook</title>
+</head>
+<body>
+    <main>
+        <h1>Guestbook</h1>
+        <ul>
+            <% for (const entry of entries) { %>
+                <li>
+                    <strong><%= entry.name %>:</strong> <%= entry.message %>
+                </li>
+            <% } %>
+        </ul>
+        <form method="POST" action="/add-entry">
+            <label for="name">Your Name:</label>
+            <input name="name" required><br>
+            <label for="message">Your Message:</label>
+            <textarea name="message" rows="4" required></textarea><br>
+            <input type="submit" value="Add Entry">
+        </form>
+    </main>
+</body>
+</html>
